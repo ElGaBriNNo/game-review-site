@@ -5,6 +5,7 @@ import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+
 </script>
 
 <template>
@@ -24,7 +25,12 @@ import SupportIcon from './icons/IconSupport.vue'
       <ToolingIcon />
     </template>
     <template #heading>Tooling</template>
+    <div>
 
+      <div class="media-body" v-if="loaded">
+        <li v-for="games in game">{{ games.title }}</li>
+      </div>
+    </div>
     This project is served and bundled with
     <a href="https://vitejs.dev/guide/features.html" target="_blank">Vite</a>. The recommended IDE
     setup is <a href="https://code.visualstudio.com/" target="_blank">VSCode</a> +

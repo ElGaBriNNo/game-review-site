@@ -1,5 +1,6 @@
 import express from "express";
 import userModel from "../model/models.js";
+import Game from "../model/game.js";
 const app = express();
 
 app.post("/add_user", async (request, response) => {
@@ -20,6 +21,16 @@ app.get("/users", async (request, response) => {
       response.send(users);
     } catch (error) {
       response.status(500).send(error);
+    }
+});
+
+app.get("/", async (request, response) => {
+    const games = await Game.find({});
+
+    try {
+        response.send(games);
+    } catch (error) {
+        response.status(500).send(error);
     }
 });
 
