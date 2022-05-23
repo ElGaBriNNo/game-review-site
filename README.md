@@ -1,4 +1,10 @@
-# vue-project
+# Running the app
+
+Use `npm run dev` and the server with `node server.js` all in different terminals
+
+----------------------------------------------------------------------------------------
+
+## vue-project
 
 This template should help get you started developing with Vue 3 in Vite.
 
