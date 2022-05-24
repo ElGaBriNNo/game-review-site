@@ -5,30 +5,20 @@ import TestPage from "@/components/TestPage.vue";
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it, Marius! You succeeded!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/users">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="hello-world">
+    <HelloWorld msg="Welcome to Gamite!" />
+  </div>
 </template>
 
 <style>
 @import '@/assets/base.css';
 
 #app {
+  display: flex;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-
+  justify-content: center;
   font-weight: normal;
 }
 
@@ -59,11 +49,18 @@ nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
+  justify-content: flex-start;
   margin-top: 2rem;
 }
 
 nav a.router-link-exact-active {
   color: var(--color-text);
+}
+
+.hello-world {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 nav a.router-link-exact-active:hover {
@@ -87,21 +84,19 @@ nav a:first-of-type {
   }
 
   #app {
-    display: grid;
+    display: flex;
+    max-width: 1280px;
+    margin: 0 auto;
+    justify-content: center;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
 
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
   header .wrapper {
     display: flex;
-    place-items: flex-start;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
 
   .logo {
@@ -109,10 +104,10 @@ nav a:first-of-type {
   }
 
   nav {
-    text-align: left;
-    margin-left: -1rem;
     font-size: 1rem;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 1rem 0;
     margin-top: 1rem;
   }
