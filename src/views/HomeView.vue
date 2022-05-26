@@ -1,10 +1,51 @@
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'
+import TheWelcome from '@/components/TheWelcome.vue'
+</script>
+<template>
+
+
+  <div >
+
+    <Games :key="game.id" :type="game.type" v-for="game in games"/>
+    <h4>All Available Games</h4>
+    <TheWelcome />
+  </div>
+</template>
+
+<script lang="ts">
+
+
+
+export default {
+  name: "games",
+  components: {
+
+  },
+
+  computed: {
+    games() {
+      return [
+        {id: 1, type: "s=dark souls", description: "test"}
+
+      ]
+    }
+  }
+};
 </script>
 
-<template>
-  <main>
-    <HelloWorld msg="Welcome to Gamite!" />
+<style>
+#app h4 {
+  color: #e9e9e9;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+@media only screen and (max-width: 599px) {
+  #app h4 {
+    font-size: 14px;
+  }
+}
+</style>
 
-  </main>
-</template>
+

@@ -4,6 +4,7 @@ import TestPage from '../views/TestView.vue'
 import SignUp from '../views/SignUp.vue'
 import AboutView from '../views/AboutView.vue'
 import HomeView from '../views/HomeView.vue'
+import HelloWorld from "@/components/HelloWorld.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       props: true,
-      component: HomeView
+      component: HelloWorld
     },
     {
       path: '/about',
@@ -25,6 +26,13 @@ const router = createRouter({
       props: true,
       component: TestPage
     },
+    {
+      path: '/games',
+      name: 'games',
+      props: true,
+      component: HomeView
+    },
+
     {
       path: '/signup',
       name: 'signup',
