@@ -24,7 +24,7 @@ app.get("/users", async (request, response) => {
     }
 });
 
-app.get("/", async (request, response) => {
+app.get("/games", async (request, response) => {
     const games = await Game.find({});
 
     try {

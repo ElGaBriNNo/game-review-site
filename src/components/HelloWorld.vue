@@ -45,7 +45,7 @@ defineProps<{
     <nav>
       <Button label="Sign Up" class="p-button-text" @click="loadSignup" />
       <Divider layout="vertical" />
-      <Button label="Log In" class="p-button-text" @click="$router.push('/about')" />
+      <Button label="Log In" class="p-button-text" @click="$router.push('/games')" />
     </nav>
   </div>
 </template>

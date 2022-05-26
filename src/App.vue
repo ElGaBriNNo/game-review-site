@@ -1,27 +1,25 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from "@/components/HelloWorld.vue";
+
 import TestPage from "@/components/TestPage.vue";
 import HomeView from "@/components/HelloWorld.vue";
 </script>
 
 <template>
-  <div class="hello-world">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
 <style>
 @import '@/assets/base.css';
 
-#app {
+/* #app {
   display: flex;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   justify-content: center;
   font-weight: normal;
-}
+} */
 
 header {
   line-height: 1.5;
