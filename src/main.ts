@@ -18,6 +18,7 @@ import Toast from 'primevue/toast';
 import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
+import Carousel from 'primevue/carousel';
 
 const app = createApp(App)
 
@@ -36,6 +37,7 @@ app.component('Toast', Toast);
 app.component('Dialog', Dialog);
 app.component('InputText', InputText);
 app.component('Checkbox', Checkbox);
+app.component('Carousel', Carousel);
 
 
 app.mount('#app')
