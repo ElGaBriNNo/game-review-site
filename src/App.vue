@@ -6,9 +6,64 @@ import HomeView from "@/components/HelloWorld.vue";
 </script>
 
 <template>
+  <!-- <vue-navigation-bar :options="navbarOptions" /> -->
   <router-view></router-view>
 </template>
 
+<script lang="ts">
+export default {
+  data() {
+    return {
+      navbarOptions: {
+        elementId: "main-navbar",
+        isUsingVueRouter: true,
+        mobileBreakpoint: 992,
+        brandImagePath: "./",
+        brandImageAltText: "brand-image",
+        collapseButtonOpenColor: "#661c23",
+        collapseButtonCloseColor: "#661c23",
+        showBrandImageInMobilePopup: true,
+        ariaLabelMainNav: "Main Navigation",
+        tooltipAnimationType: "shift-away",
+        tooltipPlacement: "bottom",
+        menuOptionsLeft: [
+          {
+            type: "link",
+            text: "Why Dunder Mifflin",
+            arrowColor: "#659CC8",
+          },
+          {
+            type: "link",
+            text: "Contact",
+            subMenuOptions: [
+              {
+                type: "link",
+                text: "Customer Service",
+              },
+              {
+                type: "link",
+                text: "Accounting",
+              },
+            ]
+          },
+        ],
+        menuOptionsRight: [
+          {
+            type: "button",
+            text: "Signup",
+            class: "button-red"
+          },
+          {
+            type: "button",
+            text: "Login",
+            iconRight: '<svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"> <path d="M22 6 L30 16 22 26 M30 16 L2 16" /> </svg>'
+          }
+        ]
+      }
+    }
+  }
+}
+</script>
 <style>
 @import '@/assets/base.css';
 
