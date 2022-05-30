@@ -47,10 +47,5 @@
     "vite": "^2.9.5",
     "vitest": "^0.9.3",
     "vue-tsc": "^0.34.7"
-  },
-  "git": {
-    "scripts": {
-      "pre-push": "surge --project ./dist --domain gamite-test.surge.sh"
-    }
   }
 }
