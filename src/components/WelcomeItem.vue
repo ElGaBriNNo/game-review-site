@@ -12,40 +12,63 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss">
+$color_1: var(--color-text);
+$color_2: var(--color-heading);
+
 .item {
   margin-top: 2rem;
   display: flex;
 }
-
 .details {
   flex: 1;
   margin-left: 1rem;
 }
-
 i {
   display: flex;
   place-items: center;
   place-content: center;
   width: 32px;
   height: 32px;
-
-  color: var(--color-text);
+  color: $color_1;
 }
-
 h3 {
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 0.4rem;
-  color: var(--color-heading);
+  color: $color_2;
 }
-
 @media (min-width: 1024px) {
   .item {
     margin-top: 0;
     padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
+    &:before {
+      content: ' ';
+      border-left: 1px solid var(--color-border);
+      position: absolute;
+      left: 0;
+      bottom: calc(50% + 25px);
+      height: calc(50% - 25px);
+    }
+    &:after {
+      content: ' ';
+      border-left: 1px solid var(--color-border);
+      position: absolute;
+      left: 0;
+      top: calc(50% + 25px);
+      height: calc(50% - 25px);
+    }
+    &:first-of-type {
+      &:before {
+        display: none;
+      }
+    }
+    &:last-of-type {
+      &:after {
+        display: none;
+      }
+    }
   }
-
   i {
     top: calc(50% - 25px);
     left: -26px;
@@ -56,31 +79,6 @@ h3 {
     width: 50px;
     height: 50px;
   }
-
-  .item:before {
-    content: ' ';
-    border-left: 1px solid var(--color-border);
-    position: absolute;
-    left: 0;
-    bottom: calc(50% + 25px);
-    height: calc(50% - 25px);
-  }
-
-  .item:after {
-    content: ' ';
-    border-left: 1px solid var(--color-border);
-    position: absolute;
-    left: 0;
-    top: calc(50% + 25px);
-    height: calc(50% - 25px);
-  }
-
-  .item:first-of-type:before {
-    display: none;
-  }
-
-  .item:last-of-type:after {
-    display: none;
-  }
 }
+
 </style>

@@ -23,7 +23,8 @@ export default {
   computed: {
     games() {
       return [
-        { id: 1, types: "s=dark souls", description: "test" }
+        { id: 1, types: "dark_souls" },
+        { id: 2, types: "bioshock" },
       ]
     }
   }

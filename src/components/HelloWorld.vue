@@ -75,46 +75,45 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+$color_1: #0e80e9;
+
 span {
   margin: 30px 0;
 }
-
 #email {
   width: 300px;
 }
-
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
   top: -10px;
 }
-
 h3 {
   font-size: 1.2rem;
 }
-
 .greetings {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-
-  .greetings h1 {
-    padding-top: 50px;
-    color: #0e80e9
+  h1 {
+    text-align: center;
   }
-
-  .greetings h3 {
+  h3 {
     text-align: center;
   }
 }
+@media (min-width: 1024px) {
+  .greetings {
+    h1 {
+      padding-top: 50px;
+      color: $color_1;
+    }
+    h3 {
+      text-align: center;
+    }
+  }
+}
+
 </style>

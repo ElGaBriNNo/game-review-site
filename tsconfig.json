@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
-    "noUnusedLocals": false,
+    "types": ["@peeky/test"],
+    "esModuleInterop": true,
+    "noUnusedLocals": false
   },
+
   "files": [],
   "references": [
     {
