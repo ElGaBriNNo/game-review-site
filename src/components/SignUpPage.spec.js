@@ -13,3 +13,23 @@ describe('Example test suite', () => {
 })
 
 
+
+describe('Component testingt', () => {
+  test('contain name variable', () => {
+    expect(SignUpPage.name).toEqual("UserNames")
+  })
+  test('contain confirmation', () => {
+    expect(SignUpPage).toContain("ConfirmDialog");
+  })
+  test('component data is truthy', () =>
+  {
+    expect(SignUpPage.toBeTruthy())
+  })
+  test('array to be empty', () =>
+  {
+    expect(SignUpPage).toContain([])
+  })
+})
+test.skip('skip test', () => {
+  expect(1).toBe(1)
+})
