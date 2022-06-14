@@ -2,13 +2,13 @@
 /// <reference types="@peeky/test"/>
 
 import { mount } from "@vue/test-utils";
-import TheWelcome from "./TheWelcome.vue";
+import CarouselComponent from "../CarouselComponent.vue";
 
 
 
 describe('Example test suite', () => {
   test('Component must be defined', () => {
-    expect(TheWelcome).toBeDefined()
+    expect(CarouselComponent).toBeDefined()
   })
 })
 
@@ -16,18 +16,18 @@ describe('Example test suite', () => {
 
 describe('Show items test', () => {
 test('array name to be gamesF', () => {
-  expect(TheWelcome.name).toEqual("gamesF")
+  expect(CarouselComponent.name).toEqual("gamesF")
 })
   test('games to be an array', () => {
-    expect(TheWelcome.data().games).toEqual([]);
+    expect(CarouselComponent.data().games).toEqual([]);
   })
   test('component data is truthy', () =>
   {
-    expect(TheWelcome.data()).toBeTruthy()
+    expect(CarouselComponent.data()).toBeTruthy()
   })
   test('array to be empty', () =>
   {
-    expect(TheWelcome.data().games.length).toBe(0)
+    expect(CarouselComponent.data().games.length).toBe(0)
   })
 })
 test.skip('skip test', () => {

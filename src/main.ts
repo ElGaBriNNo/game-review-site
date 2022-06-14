@@ -2,7 +2,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import router from './router/index.ts'
+import router from './router/router.ts'
 import 'vite/modulepreload-polyfill'
 import 'primevue/resources/themes/saga-blue/theme.css'
 import 'primevue/resources/primevue.min.css'

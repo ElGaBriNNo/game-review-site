@@ -2,7 +2,7 @@
 /// <reference types="@peeky/test"/>
 
 import { mount } from "@vue/test-utils";
-import SignUpPage from "./SignUpPage.vue";
+import SignUpPage from "../SignUpPage.vue";
 
 
 
