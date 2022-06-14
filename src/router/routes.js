@@ -2,7 +2,7 @@ import express from "express";
 import userModel from "../model/models.js";
 import Game from "../model/game.js";
 import { GamesF } from "../services/GameDBapi.js";
-import Detail from "../views/Detail.vue";
+//import Detail from "../views/Detail.vue";
 const app = express();
 
 app.post("/add_user", async (request, response) => {
@@ -26,11 +26,11 @@ app.get("/users", async (request, response) => {
     }
 });
 
-app.get("/Detail/:id", async (request, response) => {
-  //nst games = await GamesF.find(_id);
+// app.get("/Detail/:id", async (request, response) => {
+//   //nst games = await GamesF.find(_id);
 
- name: "Detail", component: Detail;
-});
+//  //name: "Detail", component: "Detail";
+// });
 
 app.get("/games", async (request, response) => {
     const games = await Game.find({});
