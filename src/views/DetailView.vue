@@ -2,7 +2,7 @@
   <div>
     <div id="Detail">
       <div id="containerDetail">
-        <div id="movieDetail">
+        <div id="gameDetail">
           <div id="iconsContainer">
             <div id="starIcon">
               <v-icon name="star" scale="1.2" color="#e50931" v-for="star in starAmount" :key="star"/>
@@ -16,7 +16,7 @@
           <img :src="game.background_image" loading="lazy"/>
         </div>
         <div id="descriptionsContainer">
-          <div id="movieTitle">
+          <div id="gameTitle">
             <h1>{{ game.name }}</h1>
           </div>
           <div id="spinnerLoading">
@@ -24,7 +24,7 @@
               <Spinner />
             </div>
           </div>
-          <div id="movieSynopsis">
+          <div id="gameDescription">
             <p>{{ game.description }}</p>
           </div>
           <button id="myList" @click="addToMyList">
@@ -37,7 +37,7 @@
             </p>
             <p>
               Genre
-              <span>{{ game.genre }}</span>
+              <span>{{ game.genres }}</span>
             </p>
 
 
@@ -93,7 +93,7 @@ export default {
     },
     showToast() {
       this.$toast.open({
-        message: "Adicionado em minha lista",
+        message: "Game has been added to your list",
         type: "success",
         duration: 5000,
         dismissible: true,
@@ -179,7 +179,7 @@ iframe {
 #playIcon {
   margin-left: 10px;
 }
-#movieDetail {
+#gameDetail {
   display: flex;
   flex-direction: column;
   width: 45%;
@@ -251,11 +251,11 @@ iframe {
     text-align: center;
   }
 }
-#movieTitle {
+#gameTitle {
   width: 58%;
   text-align: center;
 }
-#movieSynopsis {
+#gameDescription {
   color: $color_1;
   font-family: $font-family_4;
   font-size: 14px;

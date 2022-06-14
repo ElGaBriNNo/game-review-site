@@ -4,7 +4,7 @@ import TestPage from '../views/TestView.vue'
 import SignUp from '../views/SignUp.vue'
 import AboutView from '../views/AboutView.vue'
 import HomeView from '../views/HomeView.vue'
-import Detail from '../views/Detail.vue'
+import Detail from '../views/DetailView.vue'
 import HelloWorld from "@/components/HelloWorld.vue";
 
 const router = createRouter({
