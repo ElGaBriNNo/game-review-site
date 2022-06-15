@@ -6,7 +6,6 @@
         {{ game.name }}
         <img v-bind:src="game.image_background" alt="img" class="pic" />
       </li> -->
-
     <Carousel :value="games.results" class="carousel" :numVisible="12">
       <template #header>
         <h3>{{ type.charAt(0).toUpperCase() + type.slice(1) }}</h3>
@@ -35,24 +34,24 @@ export default {
       games: [],
       showLoading: true,
       paginationButtons: false,
-      type: "games"
+      type: "games",
+      propType: this.types
     };
   },
   props: {
-    types: String,
-    description: String,
+    types: {
+      type: String,
+      required: true
+    }
   },
-
   mounted() {
     this.getData();
-    console.log(this.types)
     //this.getGameDetail();
   },
   methods: {
     async getData(): Promise<void> {
       this.games = await GamesF(this.type);
-      console.log(this.games)
-
+      console.log(this.propType)
     },
     showDetail(_id: number): void {
       this.$router.push({ name: "Detail", params: { id: _id } });
