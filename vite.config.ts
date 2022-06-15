@@ -10,7 +10,7 @@ export default defineConfig({
   build: {
     manifest: true,
     rollupOptions: {
-      input: './src/main.ts'
+      input: 'index.html'
     }
   },
   define: {
@@ -21,5 +21,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  preview: {
+    port: 5050
   }
 })
