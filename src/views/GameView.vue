@@ -8,8 +8,8 @@ import GamesF from "@/components/CarouselComponent.vue";
   <div>
     <h4>All Available Games</h4>
 
-    <CarouselComponent :types="games" />
-    <CarouselComponent :types="genres" />
+    <CarouselComponent :key="data[0]" :type="GamesF.data.type" />
+    <CarouselComponent :key="data[1]" :type="GamesF.data.type" />
   </div>
 </template>
 <script lang="ts">
@@ -21,10 +21,10 @@ export default {
   },
   computed: {
     data() {
-      return {
-        games: "games",
-        genres: "genres"
-      }
+      return [
+        { id: 1, type: "genre" },
+        { id: 2, genre: "games" }
+      ]
     }
   }
 };
