@@ -4,13 +4,20 @@ import { RouterView } from 'vue-router'
 
 <template>
   <!-- <vue-navigation-bar :options="navbarOptions" /> -->
+  <Header />
   <router-view></router-view>
 </template>
 
 <script lang="ts">
+import Header from "./components/HeaderComponent.vue";
 export default {
+
   data() {
+
     return {
+      components: {
+        Header
+      },
       navbarOptions: {
         elementId: "main-navbar",
         isUsingVueRouter: true,
@@ -73,9 +80,15 @@ export default {
   font-weight: normal;
 } */
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #141414;
+  height: 100vh;
 }
 
 .logo {

@@ -2,57 +2,23 @@
   <div>
     <div id="Detail">
       <div id="containerDetail">
-        <div id="gameDetail">
+
           <div id="iconsContainer">
-            <div id="starIcon">
-              <i class="p pi-star" name="star" scale="1.2" color="#e50931" v-for="star in starAmount" :key="star" />
-              <div id="trailerIcon">
+
                 <p>Watch The Trailer</p>
               </div>
-            </div>
-            <div id="videoContainer">
-              <Youtube :video-id="game.trailerID" ref="youtube"></Youtube>
-            </div>
           </div>
-            <i class="pi check" name="ticket-alt" scale="1.8" color="#e5e5e5" />
+          <i class="pi check" name="ticket-alt" scale="1.8" color="#e5e5e5" />
 
 
-          <h4> {{ game.ratings }}</h4>
+
           <img :src="game.background_image" loading="lazy" />
         </div>
         <div id="descriptionsContainer">
-          <div id="gameTitle">
-            <h1>{{ game.name }}</h1>
+          <div id="genreTitle">
+            <h1>{{ name }}</h1>
           </div>
 
-          <div id="spinnerLoading">
-            <div v-show="showLoading" id="loadingSpinner">
-              <Spinner />
-            </div>
-          </div>
-          <div id="gameDescription">
-            <p>{{ game.description }}</p>
-          </div>
-          <button id="myList" @click="addToMyList">
-            Add To Favourites
-            <i class="p check" name="list-ul" scale="1.2" color="#e5e5e5" id="playIcon" />
-          </button>
-          <div id="descriptions">
-            <p>
-              <span>{{ game.platforms }}</span>
-            </p>
-            <p>
-              Genre
-              <span>{{ game.genres }}</span>
-            </p>
-            <p>
-              Trailer
-              <span>{{ gameTrailer}}</span>
-            </p>
-
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -63,7 +29,7 @@ import {Trailer} from "@/services/Trailer.js";
 
 
 export default {
-  name: "Detail",
+  name: "Genre",
   data() {
     return {
       game: [],
@@ -101,20 +67,11 @@ export default {
         this.showLoading = false;
       }
     },
-  //  addToMyList() {
-   //   this.$store.commit("addToMyList", this.game);
-   //   this.showToast();
-   // },
-    showToast() {
-      this.$toast.open({
-        message: "Game has been added to your list",
-        type: "success",
-        duration: 5000,
-        dismissible: true,
-        queue: true,
-        position: "top-right"
-      });
-    }
+    //  addToMyList() {
+    //   this.$store.commit("addToMyList", this.game);
+    //   this.showToast();
+    // },
+
   }
 };
 </script>
@@ -147,25 +104,6 @@ iframe {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-#rateContainer {
-  width: 100%;
-}
-
-#rateNumber {
-  color: $color_1;
-  font-size: 17px;
-  border: 2px solid white;
-  background-color: $background-color_1;
-  border-radius: 10px;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  margin-top: 10px;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
 }
 
 .iconStyles {
@@ -202,27 +140,11 @@ iframe {
   margin-left: 10px;
 }
 
-#gameDetail {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-  justify-content: space-around;
-
   p {
     color: $color_1;
     font-family: $font-family_1;
     text-align: justify;
   }
-}
-
-#descriptionsContainer {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 20px;
 
   h1 {
     color: $color_2;
@@ -231,15 +153,7 @@ iframe {
     font-family: $font-family_2;
     text-align: center;
   }
-}
 
-#descriptions {
-  border-radius: 20px;
-  width: 90%;
-  height: 38%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
 
   span {
     color: $color_3;
@@ -257,7 +171,7 @@ iframe {
     flex-direction: column;
     text-align: center;
   }
-}
+
 
 #iconsContainer {
   width: 100%;
@@ -275,32 +189,13 @@ iframe {
   }
 }
 
-#trailerIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#trailerIcon p {
+rIcon p {
   text-align: center;
 }
 
 #gameTitle {
   width: 58%;
   text-align: center;
-}
-
-#gameDescription {
-  color: $color_1;
-  font-family: $font-family_4;
-  font-size: 14px;
-  font-family: $font-family_3;
-  text-align: justify;
-  text-shadow: black 0.1em 0.1em 0.2em;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  flex-direction: column;
-  text-align: center;
-  width: 60%;
 }
 
 p {
@@ -317,29 +212,12 @@ p {
   }
 }
 
-@media only screen and (max-width: 450px) {
-  #descriptions {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 30px;
-  }
-}
-
 @media only screen and (max-width: 566px) {
   #iconsContainer {
     display: flex;
     flex-direction: column;
   }
 
-  #starIcon {
-    display: flex;
-    width: 100%;
-  }
 
-  #trailerIcon {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-  }
 }
 </style>

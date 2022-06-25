@@ -21,31 +21,57 @@
       </template>
     </Carousel>
   </div>
+
+  <div class="container" id="genres">
+    <!-- <h1>{{ platform }}</h1> -->
+    <!-- <li v-for="game in games.results">
+        {{ game.name }}
+        <img v-bind:src="game.image_background" alt="img" class="pic" />
+      </li> -->
+    <Carousel :value="genres.results" class="carousel" :numVisible="12">
+      <template #header>
+        <h3>{{ genre.charAt(0).toUpperCase() + genre.slice(1) }}</h3>
+      </template>
+      <template #item="slotProps">
+        <div class="item">
+          <div @click="showGenre(slotProps.data.id)">
+          <img :src="slotProps.data.image_background" id="imagemPosterSlide" />
+          </div>
+          <h4 class="h4">{{ slotProps.data.name }}</h4>
+        </div>
+
+      </template>
+    </Carousel>
+  </div>
 </template>
 
 <script lang="ts">
 
-import { GamesF } from "@/services/GameDBapi.js";
+import {fetchGenres, GamesF} from "@/services/GameDBapi.js";
 
 export default {
   name: "gamesF",
   data() {
     return {
       games: [],
+      genres: [],
       showLoading: true,
       paginationButtons: false,
       type: "games",
+      genre: "genres",
       propType: this.types
     };
   },
   props: {
     types: {
       type: String,
+      genre: String,
       required: true
     }
   },
   mounted() {
     this.getData();
+    this.getGenres();
     //this.getGameDetail();
   },
   methods: {
@@ -56,6 +82,14 @@ export default {
     showDetail(_id: number): void {
       this.$router.push({ name: "Detail", params: { id: _id } });
       console.log(this.data.id);
+    },
+    showGenre(_id: number): void {
+      this.$router.push({ name: "Genre", params: { id: _id } });
+      console.log(this.data.id);
+    },
+    async getGenres(): Promise<void> {
+      this.genres = await fetchGenres(this.genre);
+      console.log(this.propType)
     },
     // async getGameDetail() {
     //   console.log('wwwwwwwwwwwww')
