@@ -5,14 +5,14 @@
 
         <div id="iconsContainer">
 
-          <p>Watch The Trailer</p>
+
         </div>
       </div>
       <i class="pi check" name="ticket-alt" scale="1.8" color="#e5e5e5" />
 
 
 
-      <img :src="game.background_image" loading="lazy" />
+      <img :src="game.image_background" loading="lazy" />
     </div>
     <div id="descriptionsContainer">
       <div id="genreTitle">
@@ -79,7 +79,7 @@ export default {
 <style lang="scss">
 $color_1: #e9e9e9;
 $color_2: #ffffff;
-$color_3: #969696;
+$color_3: #ffffff;
 $font-family_1: "Segoe UI";
 $background-color_1: rgb(255, 196, 0);
 

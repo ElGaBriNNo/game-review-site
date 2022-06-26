@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import SignUpPage from "./SignUpPage.vue";
+import LogInPage from "./LogInPage.vue";
 </script>
 
 <template>
   <div class="greetings">
     <Toast />
     <SignUpPage v-bind:display="showSignUp" v-if="showSignUp" />
+    <LogInPage v-bind:display="showLogIn" v-if="showLogIn" />
     <div class="startup">
       <img alt="GM logo" class="logo" src="@/assets/gamitePNG.png" height="125" />
       <h1>Welcome to Gamite!</h1>
@@ -17,7 +19,7 @@ import SignUpPage from "./SignUpPage.vue";
       <div class="signButtons">
         <Button label="Sign Up" class="p-button-text grid-item" @click="showSignUp = !showSignUp" />
         <Divider class="grid-item" layout="vertical" />
-        <Button label="Log In" class="p-button-text grid-item" @click="$router.push('/games')" />
+        <Button label="Log In" class="p-button-text grid-item" @click="showLogIn = !showLogIn" />
       </div>
     </div>
   </div>
@@ -28,6 +30,7 @@ export default {
   data() {
     return {
       showSignUp: false,
+      showLogIn: false,
       name: "",
       pass: "",
       email: "",
@@ -35,6 +38,10 @@ export default {
     }
   },
   methods: {
+  },
+  components: {
+    LogInPage,
+    SignUpPage
   }
 }
 </script>

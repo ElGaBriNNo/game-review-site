@@ -21,10 +21,12 @@ import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import Carousel from 'primevue/carousel';
+import axios from "axios";
 //import VueYoutube from "node_modules/vue-youtube/src/vue-youtube.js";
 //import Vuex from "vuex";
 //import { createStore } from 'vuex'
 const app = createApp(App)
+
 
 app.use(PrimeVue);
 //app.use(VueYoutube);
@@ -44,7 +46,6 @@ app.component('InputText', InputText);
 app.component('Checkbox', Checkbox);
 app.component('Carousel', Carousel);
 app.component('vue-navigation-bar', VueNavigationBar);
-
 
 app.mount('#app')
 

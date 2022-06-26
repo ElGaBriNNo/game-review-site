@@ -6,7 +6,7 @@
         {{ game.name }}
         <img v-bind:src="game.image_background" alt="img" class="pic" />
       </li> -->
-    <Carousel :value="games.results" class="carousel" :numVisible="12">
+    <Carousel :value="games.results" class="carousel" :numVisible="7" :numScroll="3">
       <template #header>
         <h3>{{ type.charAt(0).toUpperCase() + type.slice(1) }}</h3>
       </template>
@@ -28,14 +28,14 @@
         {{ game.name }}
         <img v-bind:src="game.image_background" alt="img" class="pic" />
       </li> -->
-    <Carousel :value="genres.results" class="carousel" :numVisible="12">
+    <Carousel :value="genres.results" class="carousel" :numVisible="7" :numScroll="3">
       <template #header>
         <h3>{{ genre.charAt(0).toUpperCase() + genre.slice(1) }}</h3>
       </template>
       <template #item="slotProps">
         <div class="item">
           <div @click="showGenre(slotProps.data.id)">
-          <img :src="slotProps.data.image_background" id="imagemPosterSlide" />
+            <img :src="slotProps.data.image_background" id="imagemPosterSlide" />
           </div>
           <h4 class="h4">{{ slotProps.data.name }}</h4>
         </div>
@@ -47,7 +47,7 @@
 
 <script lang="ts">
 
-import {fetchGenres, GamesF} from "@/services/GameDBapi.js";
+import { fetchGenres, GamesF } from "@/services/GameDBapi.js";
 
 export default {
   name: "gamesF",
@@ -138,16 +138,5 @@ h3 {
     transform: scale(1.1);
     cursor: pointer;
   }
-}
-
-.VueCarousel-navigation-button[data-v-453ad8cd] {
-  color: $color_3  !important;
-  outline: none !important;
-}
-
-.carousel {
-  width: 35%;
-  height: 100%;
-  margin: auto;
 }
 </style>

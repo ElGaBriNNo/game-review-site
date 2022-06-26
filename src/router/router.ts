@@ -5,6 +5,7 @@ import Detail from '../views/DetailView.vue'
 import TitleScreen from "@/components/TitleScreen.vue";
 import MyListComponent from "@/components/MyListComponent.vue";
 import SignUpPage from "@/components/SignUpPage.vue";
+import LogInPage from "@/components/LogInPage.vue";
 import Genre from '../views/GenreView.vue'
 
 const router = createRouter({
@@ -13,6 +14,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      beforeEnter(to, from, next) {
+        const loggedIn = localStorage.getItem('jwt');
+        if (to.name === 'home' && loggedIn) {
+          next({
+            path: '/games',
+            replace: true
+          })
+        } else {
+          next(
+          )
+        }
+      },
       props: true,
       component: TitleScreen
     },
@@ -42,12 +55,21 @@ const router = createRouter({
       component: SignUpPage
     },
     {
+      path: "/LogIn",
+      name: "LogIn",
+      component: LogInPage
+    },
+    {
       path: '/MyList',
       name: 'MyList',
       props: true,
       component: MyListComponent
     }
   ]
+})
+
+router.beforeEach(() => {
+
 })
 
 export default router

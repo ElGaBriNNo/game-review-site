@@ -3,17 +3,6 @@
     <div id="Detail">
       <div id="containerDetail">
         <div id="gameDetail">
-          <!-- <div id="iconsContainer">
-            <div id="starIcon">
-              <i class="p pi-star" name="star" scale="1.2" color="#e50931" v-for="star in starAmount" :key="star" />
-              <div id="trailerIcon">
-                <p>Watch The Trailer</p>
-              </div>
-            </div>
-            <div id="videoContainer">
-              <h1>{{ game.trailerID }}</h1>
-            </div>
-          </div> -->
           <i class="pi check" name="ticket-alt" scale="1.8" color="#e5e5e5" />
           <!-- <h4> {{ game.ratings }}</h4> -->
         </div>
@@ -47,11 +36,12 @@
             Genre
             <span>{{ game.genres }}</span>
           </p>
-          <p>
-            Trailer
-            <span>{{ gameTrailer }}</span>
-          </p>
 
+          <div id="videoContainer">
+            <iframe width="1280" height="720" :src="trailerIDSRC" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -69,8 +59,9 @@ export default {
     return {
       game: [],
       showLoading: true,
-      trailerID: "",
+      //  trailerID: "",
       gameTrailer: "",
+      trailerIDSRC: "",
     };
   },
   props: { id: Number },
@@ -93,9 +84,11 @@ export default {
         const data = await fetchGame(this.id);
         console.log(data);
         this.game = data;
-        const responseTrailer = await Trailer($gameTrailer).get();
-        this.trailerID = responseTrailer.data.items[0].id.videoId;
-        console.log(gameTrailer);
+        const responseTrailer = await Trailer(`${this.game.name + ' video game trailer'}`);
+        console.log(responseTrailer);
+        let trailerID = responseTrailer.items[0].id.videoId;
+        this.trailerIDSRC = "https://www.youtube.com/embed/" + trailerID
+        console.log(this.trailerID);
       } catch (error) {
         console.log(error);
       } finally {
@@ -123,7 +116,7 @@ export default {
 <style lang="scss">
 $color_1: #e9e9e9;
 $color_2: #ffffff;
-$color_3: #969696;
+$color_3: #ffffff;
 $font-family_1: "Segoe UI";
 $background-color_1: rgb(255, 196, 0);
 

@@ -3,13 +3,9 @@ import CarouselComponent from '@/components/CarouselComponent.vue'
 import GamesF from "@/components/CarouselComponent.vue";
 </script>
 <template>
-
-
   <div>
-    <h4>All Available Games</h4>
-
     <CarouselComponent :key="games" :type="GamesF.data.games" />
-    <CarouselComponent :key="genres" :type="GamesF.data.genres" />
+    <!-- <CarouselComponent :key="genres" :type="GamesF.data.genres" /> -->
   </div>
 </template>
 <script lang="ts">

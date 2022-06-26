@@ -24,10 +24,10 @@
           </ul>
         </li>
         <li class="items" @click="navigateMain">Home</li>
-        <li class="items">Categories</li>
+        <li class="items" @click="navigateGames">Categories</li>
         <li class="items">Most Recent</li>
         <li class="items" @click="navigateMyList">Go To Your List</li>
-        <li></li>
+        <li v-if="user.name" class="items" icon="pi pi-user" @click="logUserOut">Log out from {{ user.name }}</li>
       </ul>
     </nav>
     <div id="textForm">
@@ -36,37 +36,60 @@
       </form>
     </div>
     <div id="icons">
-      <Button icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text" @click="clearField" />
+      <Button id="x-button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"
+        @click="clearField" />
     </div>
   </div>
 </template>
 
 <script>
 import image from "../assets/gamitepng.png";
-
+import VueJwtDecode from "vue-jwt-decode";
 
 export default {
   name: "Header",
   data() {
     return {
       image,
-      inputSearch: ""
+      inputSearch: "",
+      user: {}
     };
-  },
-  components: {
-
   },
   methods: {
     navigateMain() {
       this.$router.push({ name: "home" });
+    },
+    navigateGames() {
+      this.$router.push({ name: "games" });
     },
     navigateMyList() {
       this.$router.push({ name: "MyList" });
     },
     clearField() {
       document.getElementById("search").value = "";
+    },
+    getUserDetails() {
+      let token = localStorage.getItem("jwt");
+      let decoded = VueJwtDecode.decode(token);
+      this.user = decoded;
+    },
+    logUserOut() {
+      localStorage.removeItem("jwt");
+      this.$router.push("/");
     }
-  }
+  },
+  created() {
+    if (localStorage.getItem('jwt')) {
+      this.getUserDetails();
+    }
+  },
+  watch: {
+    $route(to, from) {
+      if (localStorage.getItem('jwt')) {
+        this.getUserDetails();
+      }
+    }
+  },
 };
 </script>
 
@@ -163,7 +186,7 @@ ul li ul li {
   width: 50%;
 }
 
-input[type="text"] {
+#search {
   width: 1px;
   border: none;
   border-radius: 15px;
@@ -190,7 +213,7 @@ input[type="text"] {
 }
 
 .pi {
-  color: #ffffff;
+  color: #000000;
 }
 
 @media only screen and (max-width: 906px) {
