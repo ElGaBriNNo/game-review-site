@@ -24,16 +24,16 @@
           </ul>
         </li>
         <li class="items" @click="navigateMain">Home</li>
-        <li class="items" @click="navigateGames">Categories</li>
-        <li class="items">Most Recent</li>
-        <li class="items" @click="navigateMyList">Go To Your List</li>
-        <li v-if="user.name" class="items" icon="pi pi-user" @click="logUserOut">Log out from {{ user.name }}</li>
+        <li class="items" @click="navigateGames">Categories and games</li>
+        <!-- <li class="items">Most Recent</li> -->
+        <li class="items" @click="navigateMyList">You list</li>
+        <li v-if="user.name" class="items" icon="pi pi-user" @click="logUserOut">Log out from <b>{{ user.name }}</b>
+        </li>
       </ul>
     </nav>
     <div id="textForm">
-      <form>
-        <input id="search" type="text" name="text" placeholder="Search for a game" />
-      </form>
+      <input class="form-control" id="search" type="text" name="text" v-model="searchQuery"
+        placeholder="Search for a game" v-on:keyup.enter="getSearchResults" />
     </div>
     <div id="icons">
       <Button id="x-button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"
@@ -52,10 +52,14 @@ export default {
     return {
       image,
       inputSearch: "",
-      user: {}
+      user: {},
+      searchQuery: "",
     };
   },
   methods: {
+    async getSearchResults() {
+      this.$router.push({ name: "Search", params: { search: this.searchQuery } })
+    },
     navigateMain() {
       this.$router.push({ name: "home" });
     },
@@ -66,6 +70,7 @@ export default {
       this.$router.push({ name: "MyList" });
     },
     clearField() {
+      this.searchQuery = "";
       document.getElementById("search").value = "";
     },
     getUserDetails() {

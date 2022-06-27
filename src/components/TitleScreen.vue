@@ -12,7 +12,7 @@ import LogInPage from "./LogInPage.vue";
       <img alt="GM logo" class="logo" src="@/assets/gamitePNG.png" height="125" />
       <h1>Welcome to Gamite!</h1>
       <h3>
-        Access an extensive library of video games and reviews in a social media-esque setting. Create your account or
+        Create your account or
         log
         in to begin!
       </h3>

@@ -1,5 +1,10 @@
+<script setup>
+import ReviewComponent from '@/components/ReviewComponent.vue'
+</script>
+
 <template>
   <div>
+    <Toast />
     <div id="Detail">
       <div id="containerDetail">
         <div id="gameDetail">
@@ -29,12 +34,16 @@
         </button>
         <div id="descriptions">
           <p>
-            Platforms
-            <span>{{ game.platforms }}</span>
+            Platforms:
+          <div v-for="platform in game.platforms" style="padding: 10px">
+            {{ platform.platform.name }}
+          </div>
           </p>
           <p>
-            Genre
-            <span>{{ game.genres }}</span>
+            Genre:
+          <div v-for="genre in game.genres" style="padding: 10px">
+            {{ genre.name }}
+          </div>
           </p>
 
           <div id="videoContainer">
@@ -42,6 +51,10 @@
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen></iframe>
           </div>
+        </div>
+        <div class="reviews">
+          <h1>User reviews</h1>
+          <ReviewComponent></ReviewComponent>
         </div>
       </div>
     </div>
@@ -95,10 +108,12 @@ export default {
         this.showLoading = false;
       }
     },
-    //  addToMyList() {
-    //   this.$store.commit("addToMyList", this.game);
-    //   this.showToast();
-    // },
+    addToMyList() {
+      this.$store.commit("addToMyList", this.game);
+      this.$toast.add(
+        { severity: 'success', summary: 'Added ' + this.game.name + ' to your favorites', life: 3000 }
+      );
+    },
     showToast() {
       this.$toast.open({
         message: "Game has been added to your list",
@@ -285,10 +300,6 @@ iframe {
 #trailerIcon p {
   text-align: center;
 }
-
-
-
-
 
 p {
   span {

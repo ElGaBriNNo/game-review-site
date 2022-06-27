@@ -20,13 +20,17 @@ import Toast from 'primevue/toast';
 import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
+import VueToast from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-default.css";
 import Carousel from 'primevue/carousel';
+import store from "./store";
 import axios from "axios";
 //import VueYoutube from "node_modules/vue-youtube/src/vue-youtube.js";
 //import Vuex from "vuex";
 //import { createStore } from 'vuex'
 const app = createApp(App)
-
+app.use(store);
+app.use(VueToast)
 
 app.use(PrimeVue);
 //app.use(VueYoutube);

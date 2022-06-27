@@ -7,6 +7,7 @@ import MyListComponent from "@/components/MyListComponent.vue";
 import SignUpPage from "@/components/SignUpPage.vue";
 import LogInPage from "@/components/LogInPage.vue";
 import Genre from '../views/GenreView.vue'
+import SearchComponent from "@/components/SearchComponent.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +59,12 @@ const router = createRouter({
       path: "/LogIn",
       name: "LogIn",
       component: LogInPage
+    },
+    {
+      path: '/Search/:search',
+      name: 'Search',
+      props: true,
+      component: SearchComponent
     },
     {
       path: '/MyList',

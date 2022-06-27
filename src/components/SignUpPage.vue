@@ -20,10 +20,10 @@
                 <InputText id="email" type="text" v-model="register.email" />
                 <label for="email">E-mail address</label>
             </span>
-            <div class="field-checkbox">
+            <!-- <div class="field-checkbox">
                 <Checkbox id="tos" v-model="checked" :binary="true"></Checkbox>
                 <label for="tos"> I agree to the Terms Of Service</label>
-            </div>
+            </div> -->
         </form>
 
         <template #footer>

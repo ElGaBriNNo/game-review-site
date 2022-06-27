@@ -1,66 +1,56 @@
+
 <template>
-  <div>
-    <div id="Detail">
-      <div id="containerDetail">
-
-        <div id="iconsContainer">
-
-
-        </div>
+  <div id="genreTitle">
+    <h1>{{ genre }}</h1>
+  </div>
+  <div class="container-for-games">
+    <div v-for="game in games.results">
+      <div @click="showDetail(game.id)">
+        <img :src="game.background_image" alt="pic" class="game-pic">
       </div>
-      <i class="pi check" name="ticket-alt" scale="1.8" color="#e5e5e5" />
-
-
-
-      <img :src="game.image_background" loading="lazy" />
-    </div>
-    <div id="descriptionsContainer">
-      <div id="genreTitle">
-        <h1>{{ name }}</h1>
-      </div>
-
+      <p>{{ game.name }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { fetchGame } from "../services/GameDBapi.js";
-import { Trailer } from "@/services/Trailer.js";
+import { fetchGamesByGenre, fetchGenre } from "../services/GameDBapi.js";
 
 
 export default {
   name: "Genre",
   data() {
     return {
-      game: [],
+      games: [],
       showLoading: true,
-      trailerID: "",
-      gameTrailer: "",
-    };
+      genre: ''
+    }
   },
   props: { id: Number },
-  components: {
-
-
-  },
   computed: {
     starAmount() {
       return Math.floor(Math.random() * 5) + 1
     }
   },
   mounted() {
-    this.getGameDetail()
+    this.getGamesByGenre()
+    this.getGenreName()
   },
   methods: {
-    async getGameDetail() {
+    showDetail(id) {
+      console.log(id)
+      this.$router.push({ name: "Detail", params: { id: id } });
+    },
+    async getGenreName() {
+      const data = await fetchGenre(this.id);
+      this.genre = data.name;
+    },
+    async getGamesByGenre() {
       this.showLoading = true;
       try {
-        const data = await fetchGame(this.id);
+        const data = await fetchGamesByGenre(this.id);
         console.log(data);
-        this.game = data;
-        const responseTrailer = await Trailer($($gameTrailer)).get();
-        this.trailerID = responseTrailer.data.items[0].id.videoId;
-        console.log(gameTrailer);
+        this.games = data;
       } catch (error) {
         console.log(error);
       } finally {
@@ -125,6 +115,7 @@ iframe {
   align-items: center;
   transition: transform 0.5s;
   margin-bottom: 30px;
+  object-fit: cover;
 
   &:hover {
     transform: scale(1.2);
@@ -207,7 +198,24 @@ p {
     display: flex;
     flex-direction: column;
   }
+}
 
+.container-for-games {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
 
+.game-pic {
+  border-radius: 15px;
+  transition: 0.5s;
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  margin: 20px;
+
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 }
 </style>

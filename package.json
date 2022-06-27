@@ -44,6 +44,7 @@
     "vue-jwt-decode": "^0.1.0",
     "vue-navigation-bar": "^5.0.2",
     "vue-router": "^4.0.14",
+    "vue-toast-notification": "^3.0.4",
     "vue-youtube": "^1.4.0",
     "vuex": "^4.0.2"
   },
