@@ -5,6 +5,7 @@ import Detail from '../views/DetailView.vue'
 import TitleScreen from "@/components/TitleScreen.vue";
 import MyListComponent from "@/components/MyListComponent.vue";
 import SignUpPage from "@/components/SignUpPage.vue";
+import SearchComponent from "@/components/SearchComponent.vue";
 import Genre from '../views/GenreView.vue'
 
 const router = createRouter({
@@ -40,6 +41,12 @@ const router = createRouter({
       name: 'SignUp',
       props: true,
       component: SignUpPage
+    },
+    {
+      path: '/Search',
+      name: 'Search',
+      props: true,
+      component: SearchComponent
     },
     {
       path: '/MyList',

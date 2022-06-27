@@ -21,6 +21,11 @@ export const fetchGame = async type => {
   const result = response.json();
   console.log(result);
   return result;
-
+};
+export const fetchByName = async searchQuery => {
+  const response = await fetch(`https://api.rawg.io/api/games/${searchQuery}/game-series?key=5954714cc3024d74b809bd9af70c74c1`);
+  const result = response.json();
+  console.log(result);
+  return result;
 };
 

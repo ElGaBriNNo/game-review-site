@@ -1,14 +1,14 @@
 <template>
   <div id="myListContainer">
     <div id="myListContent">
-      <div :key="game.id" v-for="game in this.$store.list" id="gameSaved">
+      <div :key="game.id" v-for="game in this.$store.state.list" id="gameSaved">
         <div id="changeColorImage" v-if="games.includes(game.id)">
           <img :src="game.background_image" id="gameSaveImage" />
         </div>
         <div id="normalColorImage" v-else>
           <img :src="game.background_image" id="gameSaveImage" />
         </div>
-
+<p> {{game.name}}</p>
         <div id="buttonsMyList">
           <button
               id="checkedButton"
@@ -76,7 +76,7 @@ export default {
     },
     markPlayedToast() {
       this.$toast.open({
-        message: "Mark The Game As Played",
+        message: "Game Marked As Played",
         type: "success",
         duration: 3000,
         dismissible: true,
@@ -127,6 +127,7 @@ export default {
 }
 #gameSaveImage {
   position: absolute;
+  object-fit: cover;
   top: 0;
   left: 0;
   z-index: -1;

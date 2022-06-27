@@ -1,11 +1,16 @@
-import express, { json } from "express";
+import express, {
+  json
+} from "express";
 import cors from 'cors';
 import pkg from 'mongoose';
-const { connect, connection } = pkg;
+const {
+  connect,
+  connection
+} = pkg;
 
-const port= 8000;
+const port = 8000;
 
-import Router from "./src/router/routes.js";
+import Router from "./src/router/router.ts";
 
 const app = express();
 
@@ -18,8 +23,7 @@ const cluster = "cluster0.pnanr";
 const dbname = "game-review-siteDB";
 
 connect(
-  `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`, 
-  {
+  `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }

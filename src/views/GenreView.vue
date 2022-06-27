@@ -3,21 +3,21 @@
     <div id="Detail">
       <div id="containerDetail">
 
-          <div id="iconsContainer">
-
-                <p>Watch The Trailer</p>
-              </div>
-          </div>
-          <i class="pi check" name="ticket-alt" scale="1.8" color="#e5e5e5" />
+        <div id="iconsContainer">
 
 
-
-          <img :src="game.background_image" loading="lazy" />
         </div>
-        <div id="descriptionsContainer">
-          <div id="genreTitle">
-            <h1>{{ name }}</h1>
-          </div>
+      </div>
+      <i class="pi check" name="ticket-alt" scale="1.8" color="#e5e5e5" />
+
+
+
+      <img :src="game.image_background" loading="lazy" />
+    </div>
+    <div id="descriptionsContainer">
+      <div id="genreTitle">
+        <h1>{{ name }}</h1>
+      </div>
 
     </div>
   </div>
@@ -25,7 +25,7 @@
 
 <script>
 import { fetchGame } from "../services/GameDBapi.js";
-import {Trailer} from "@/services/Trailer.js";
+import { Trailer } from "@/services/Trailer.js";
 
 
 export default {
@@ -80,10 +80,7 @@ export default {
 $color_1: #e9e9e9;
 $color_2: #ffffff;
 $color_3: #969696;
-$font-family_1: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-$font-family_2: Arial, Helvetica, sans-serif;
-$font-family_3: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-$font-family_4: arial;
+$font-family_1: "Segoe UI";
 $background-color_1: rgb(255, 196, 0);
 
 #Detail {
@@ -140,37 +137,35 @@ iframe {
   margin-left: 10px;
 }
 
-  p {
-    color: $color_1;
-    font-family: $font-family_1;
-    text-align: justify;
-  }
+p {
+  color: $color_1;
+  font-family: $font-family_1;
+  text-align: justify;
+}
 
-  h1 {
-    color: $color_2;
-    text-shadow: black 0.1em 0.1em 0.2em;
-    font-size: 35px;
-    font-family: $font-family_2;
-    text-align: center;
-  }
+h1 {
+  color: $color_2;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 35px;
+  font-family: $font-family_1;
+  text-align: center;
+}
 
 
-  span {
-    color: $color_3;
-  }
+span {
+  color: $color_3;
+}
 
-  p {
-    color: $color_2;
-    font-family: $font-family_3;
-    text-align: justify;
-    text-shadow: black 0.1em 0.1em 0.2em;
-    font-weight: bold;
-    margin-bottom: 15px;
-    font-size: 18px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
+p {
+  color: $color_2;
+  text-align: justify;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  margin-bottom: 15px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
 
 
 #iconsContainer {
@@ -190,11 +185,6 @@ iframe {
 }
 
 rIcon p {
-  text-align: center;
-}
-
-#gameTitle {
-  width: 58%;
   text-align: center;
 }
 

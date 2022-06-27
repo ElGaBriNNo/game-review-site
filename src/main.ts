@@ -16,29 +16,34 @@ import Divider from 'primevue/divider';
 import ConfirmationService from 'primevue/confirmationservice';
 import ConfirmDialog from 'primevue/confirmdialog';
 import ToastService from 'primevue/toastservice';
-import Toast from 'primevue/toast';
+//import Toast from 'primevue/toast';
 import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import Carousel from 'primevue/carousel';
+import VueToast from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-default.css";
+import store from "./store";
+//import 'dotenv/config'
 //import VueYoutube from "node_modules/vue-youtube/src/vue-youtube.js";
-//import Vuex from "vuex";
+
 //import { createStore } from 'vuex'
 const app = createApp(App)
-
 app.use(PrimeVue);
+app.use(store);
+app.use(VueToast)
 //app.use(VueYoutube);
 app.use(createPinia())
 app.use(router)
 app.use(ConfirmationService);
-app.use(ToastService);
+//app.use(ToastService);
 //app.use(Vuex);
 app.component('ProgressBar', ProgressBar);
 //app.component('Youtube', VueYoutube);
 app.component('Button', Button);
 app.component('Divider', Divider);
 app.component('ConfirmDialog', ConfirmDialog);
-app.component('Toast', Toast);
+app.component('Toast', VueToast);
 app.component('Dialog', Dialog);
 app.component('InputText', InputText);
 app.component('Checkbox', Checkbox);

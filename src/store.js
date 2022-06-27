@@ -1,14 +1,18 @@
-import Vue from "vue";
+
 import {Store} from "vuex";
+
+import Vuex from "vuex";
 
 
 let list = window.localStorage.getItem("list");
 let gamePlayed = window.localStorage.getItem("gamePlayed");
+let searchList = window.localStorage.getItem("searchList");
 
-export default Store({
+export default new Vuex.Store({
     state: {
         list: list ? JSON.parse(list) : [],
-        gamePlayed: gamePlayed ? JSON.parse(gamePlayed) : []
+        gamePlayed: gamePlayed ? JSON.parse(gamePlayed) : [],
+        searchList: searchList ? JSON.parse(searchList) : []
     },
 
     mutations: {
@@ -50,6 +54,13 @@ export default Store({
             let playedDelete = state.gamePlayed.indexOf(game);
             state.gamePlayed.splice(playedDelete, 1);
             this.commit("markGame");
-        }
+        },
+        addToSearchList(state, games) {
+                state.searchList.push(games);
+            this.commit("saveSearchData");
+        },
+        saveSearchData(state) {
+            window.localStorage.setItem("searchList", JSON.stringify(state.searchList));
+        },
     }
 });

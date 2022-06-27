@@ -38,7 +38,7 @@ import User from "/src/model/user";
 import axios from "axios";
 export default {
 
-  name: "SignUp",
+    name: "SignUp",
     data() {
 
         return {
@@ -58,13 +58,13 @@ export default {
             let apiURL = 'mongodb+srv://admin:admin@cluster0.pnanr.mongodb.net/game-review-siteDB/?retryWrites=true&w=majority';
 
             axios.post(apiURL, User).then(() => {
-              User = {
-                name: this.name,
-                password: this.password,
-                email: this.email,
-              }
+                //   User = {
+                //     name: this.name,
+                //     password: this.password,
+                //     email: this.email,
+                //   }
             }).catch(error => {
-              console.log(error)
+                console.log(error)
             });
             this.$toast.add(
                 { severity: 'success', summary: 'Successfully signed up', detail: 'You can now log in', life: 3000 }
