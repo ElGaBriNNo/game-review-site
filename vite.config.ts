@@ -24,5 +24,11 @@ export default defineConfig({
   },
   preview: {
     port: 5050
+  },
+  test: {
+    runtimeEnv: 'dom',
+    deps: {
+      inline: [/@peeky\/test/, /@vue\/test-utils/, /vitest/]
+    }
   }
 })

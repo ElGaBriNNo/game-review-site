@@ -7,7 +7,7 @@
     "start": "node server.js",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 5050",
-    "deploy": "surge --project ./dist --domain gamite-test.surge.sh",
+    "deploy": "surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}",
     "test:open": "peeky open",
     "test": "peeky run",
     "test:unit": "vitest --environment jsdom",
