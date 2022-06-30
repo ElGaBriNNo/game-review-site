@@ -11,6 +11,21 @@ export const GamesF = async type => {
   const result = response.json();
   return result;
 };
+export const fetchGenres = async genre => {
+  const response = await fetch(`https://api.rawg.io/api/${genre}?key=5954714cc3024d74b809bd9af70c74c1`);
+  const result = response.json();
+  return result;
+};
+export const fetchGenre = async genre => {
+  const response = await fetch(`https://api.rawg.io/api/genres/${genre}?key=5954714cc3024d74b809bd9af70c74c1`);
+  const result = response.json();
+  return result;
+};
+export const fetchGamesByGenre = async genre => {
+  const response = await fetch(`https://api.rawg.io/api/games?genres=${genre}&page_size=50&key=5954714cc3024d74b809bd9af70c74c1`);
+  const result = response.json();
+  return result;
+};
 export const fetchGame = async type => {
   const response = await fetch(`https://api.rawg.io/api/games/${type}?key=5954714cc3024d74b809bd9af70c74c1`);
   const result = response.json();
@@ -18,4 +33,8 @@ export const fetchGame = async type => {
   return result;
 
 };
-
+export const fetchByName = async searchQuery => {
+  const response = await fetch(`https://api.rawg.io/api/games?search=${searchQuery}&page_size=50&key=5954714cc3024d74b809bd9af70c74c1`);
+  const result = response.json();
+  return result;
+};

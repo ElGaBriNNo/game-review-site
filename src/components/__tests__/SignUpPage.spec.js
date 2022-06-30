@@ -1,7 +1,8 @@
-
 /// <reference types="@peeky/test"/>
 
-import { mount } from "@vue/test-utils";
+import {
+  mount
+} from "@vue/test-utils";
 import SignUpPage from "../SignUpPage.vue";
 
 
@@ -14,19 +15,17 @@ describe('Example test suite', () => {
 
 
 
-describe('Component testingt', () => {
+describe('Component testing', () => {
   test('contain name variable', () => {
     expect(SignUpPage.name).toEqual("UserNames")
   })
   test('contain confirmation', () => {
     expect(SignUpPage).toContain("ConfirmDialog");
   })
-  test('component data is truthy', () =>
-  {
+  test('component data is truthy', () => {
     expect(SignUpPage.toBeTruthy())
   })
-  test('array to be empty', () =>
-  {
+  test('array to be empty', () => {
     expect(SignUpPage).toContain([])
   })
 })

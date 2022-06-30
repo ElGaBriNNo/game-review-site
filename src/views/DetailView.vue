@@ -1,47 +1,60 @@
+<script setup>
+import ReviewComponent from '@/components/ReviewComponent.vue'
+</script>
+
 <template>
   <div>
+    <Toast />
     <div id="Detail">
       <div id="containerDetail">
         <div id="gameDetail">
-          <div id="iconsContainer">
-            <div id="starIcon">
-              <v-icon name="star" scale="1.2" color="#e50931" v-for="star in starAmount" :key="star" />
-            </div>
-            <div id="trailerIcon">
-
-              <v-icon name="ticket-alt" scale="1.8" color="#e5e5e5" />
-            </div>
-          </div>
-          <h4> {{ game.ratings }}</h4>
-          <img :src="game.background_image" loading="lazy" />
+          <i class="pi check" name="ticket-alt" scale="1.8" color="#e5e5e5" />
+          <!-- <h4> {{ game.ratings }}</h4> -->
         </div>
         <div id="descriptionsContainer">
-          <div id="gameTitle">
-            <h1>{{ game.name }}</h1>
+          <div id="imageContainer">
+            <img :src="game.background_image" loading="lazy" />
           </div>
           <div id="spinnerLoading">
             <div v-show="showLoading" id="loadingSpinner">
               <Spinner />
             </div>
           </div>
+
           <div id="gameDescription">
-            <p>{{ game.description }}</p>
+            <div id="gameTitle">
+              <h1>{{ game.name }}</h1>
+            </div>
+            <p>{{ game.description_raw }}</p>
           </div>
-          <button id="myList" @click="addToMyList">
-            Add To Favourites
-            <v-icon name="list-ul" scale="1.2" color="#e5e5e5" id="playIcon" />
-          </button>
-          <div id="descriptions">
-            <p>
-              <span>{{ game.platforms }}</span>
-            </p>
-            <p>
-              Genre
-              <span>{{ game.genres }}</span>
-            </p>
-
-
+        </div>
+        <button id="myList" @click="addToMyList">
+          Add To Favourites
+          <i class="p check" name="list-ul" scale="1.2" color="#e5e5e5" id="playIcon" />
+        </button>
+        <div id="descriptions">
+          <p>
+            Platforms:
+          <div v-for="platform in game.platforms" style="padding: 10px">
+            {{ platform.platform.name }}
           </div>
+          </p>
+          <p>
+            Genre:
+          <div v-for="genre in game.genres" style="padding: 10px">
+            {{ genre.name }}
+          </div>
+          </p>
+
+          <div id="videoContainer">
+            <iframe width="1280" height="720" :src="trailerIDSRC" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="reviews">
+          <h1>User reviews</h1>
+          <ReviewComponent></ReviewComponent>
         </div>
       </div>
     </div>
@@ -50,6 +63,7 @@
 
 <script>
 import { fetchGame } from "../services/GameDBapi.js";
+import { Trailer } from "@/services/Trailer.js";
 
 
 export default {
@@ -58,7 +72,9 @@ export default {
     return {
       game: [],
       showLoading: true,
-
+      //  trailerID: "",
+      gameTrailer: "",
+      trailerIDSRC: "",
     };
   },
   props: { id: Number },
@@ -81,6 +97,11 @@ export default {
         const data = await fetchGame(this.id);
         console.log(data);
         this.game = data;
+        const responseTrailer = await Trailer(`${this.game.name + ' video game trailer'}`);
+        console.log(responseTrailer);
+        let trailerID = responseTrailer.items[0].id.videoId;
+        this.trailerIDSRC = "https://www.youtube.com/embed/" + trailerID
+        console.log(this.trailerID);
       } catch (error) {
         console.log(error);
       } finally {
@@ -89,7 +110,9 @@ export default {
     },
     addToMyList() {
       this.$store.commit("addToMyList", this.game);
-      this.showToast();
+      this.$toast.add(
+        { severity: 'success', summary: 'Added ' + this.game.name + ' to your favorites', life: 3000 }
+      );
     },
     showToast() {
       this.$toast.open({
@@ -108,11 +131,8 @@ export default {
 <style lang="scss">
 $color_1: #e9e9e9;
 $color_2: #ffffff;
-$color_3: #969696;
-$font-family_1: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-$font-family_2: Arial, Helvetica, sans-serif;
-$font-family_3: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-$font-family_4: arial;
+$color_3: #ffffff;
+$font-family_1: "Segoe UI";
 $background-color_1: rgb(255, 196, 0);
 
 #Detail {
@@ -151,13 +171,11 @@ iframe {
   margin-top: 10px;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
 }
 
 .iconStyles {
   text-align: center;
   font-size: 14px;
-  font-weight: bold;
 }
 
 #myList {
@@ -167,7 +185,6 @@ iframe {
   text-align: center;
   height: 40px;
   font-size: 16px;
-  font-weight: bold;
   color: $color_2;
   border: none;
   width: 250px;
@@ -202,21 +219,37 @@ iframe {
 }
 
 #descriptionsContainer {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  margin: 30px;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-evenly;
   align-items: center;
-  padding-right: 20px;
+}
 
-  h1 {
-    color: $color_2;
-    text-shadow: black 0.1em 0.1em 0.2em;
-    font-size: 35px;
-    font-family: $font-family_2;
-    text-align: center;
-  }
+#imageContainer img {
+  height: auto;
+  width: 100%;
+  max-height: 600px;
+  max-width: 600px;
+  grid-column: 1;
+}
+
+#gameDescription p {
+  font-size: 25px;
+  overflow-y: auto;
+  grid-column: 2;
+  font-size: 20px;
+  font-family: $font-family_1;
+  max-height: 500px
+}
+
+#gameDescription {
+  margin-left: 50px;
+}
+
+#gameTitle h1 {
+  font-size: 50px;
+  text-align: left;
 }
 
 #descriptions {
@@ -233,10 +266,9 @@ iframe {
 
   p {
     color: $color_2;
-    font-family: $font-family_3;
+    font-family: $font-family_1;
     text-align: justify;
     text-shadow: black 0.1em 0.1em 0.2em;
-    font-weight: bold;
     margin-bottom: 15px;
     font-size: 18px;
     display: flex;
@@ -251,13 +283,11 @@ iframe {
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  font-weight: bold;
   color: $color_1;
 
   p {
     margin-right: 10px;
     color: $color_1;
-    font-weight: bold;
   }
 }
 
@@ -265,34 +295,14 @@ iframe {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  p {
-    text-align: center;
-  }
 }
 
-#gameTitle {
-  width: 58%;
+#trailerIcon p {
   text-align: center;
-}
-
-#gameDescription {
-  color: $color_1;
-  font-family: $font-family_4;
-  font-size: 14px;
-  font-family: $font-family_3;
-  text-align: justify;
-  text-shadow: black 0.1em 0.1em 0.2em;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  flex-direction: column;
-  text-align: center;
-  width: 60%;
 }
 
 p {
   span {
-    font-weight: 100;
     font-size: 14px;
     padding-top: 10px;
   }

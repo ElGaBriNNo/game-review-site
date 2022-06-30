@@ -6,7 +6,7 @@
         {{ game.name }}
         <img v-bind:src="game.image_background" alt="img" class="pic" />
       </li> -->
-    <Carousel :value="games.results" class="carousel" :numVisible="12">
+    <Carousel :value="games.results" class="carousel" :numVisible="7" :numScroll="3">
       <template #header>
         <h3>{{ type.charAt(0).toUpperCase() + type.slice(1) }}</h3>
       </template>
@@ -21,31 +21,57 @@
       </template>
     </Carousel>
   </div>
+
+  <div class="container" id="genres">
+    <!-- <h1>{{ platform }}</h1> -->
+    <!-- <li v-for="game in games.results">
+        {{ game.name }}
+        <img v-bind:src="game.image_background" alt="img" class="pic" />
+      </li> -->
+    <Carousel :value="genres.results" class="carousel" :numVisible="7" :numScroll="3">
+      <template #header>
+        <h3>{{ genre.charAt(0).toUpperCase() + genre.slice(1) }}</h3>
+      </template>
+      <template #item="slotProps">
+        <div class="item">
+          <div @click="showGenre(slotProps.data.id)">
+            <img :src="slotProps.data.image_background" id="imagemPosterSlide" />
+          </div>
+          <h4 class="h4">{{ slotProps.data.name }}</h4>
+        </div>
+
+      </template>
+    </Carousel>
+  </div>
 </template>
 
 <script lang="ts">
 
-import { GamesF } from "@/services/GameDBapi.js";
+import { fetchGenres, GamesF } from "@/services/GameDBapi.js";
 
 export default {
   name: "gamesF",
   data() {
     return {
       games: [],
+      genres: [],
       showLoading: true,
       paginationButtons: false,
       type: "games",
+      genre: "genres",
       propType: this.types
     };
   },
   props: {
     types: {
       type: String,
+      genre: String,
       required: true
     }
   },
   mounted() {
     this.getData();
+    this.getGenres();
     //this.getGameDetail();
   },
   methods: {
@@ -56,6 +82,14 @@ export default {
     showDetail(_id: number): void {
       this.$router.push({ name: "Detail", params: { id: _id } });
       console.log(this.data.id);
+    },
+    showGenre(_id: number): void {
+      this.$router.push({ name: "Genre", params: { id: _id } });
+      console.log(this.data.id);
+    },
+    async getGenres(): Promise<void> {
+      this.genres = await fetchGenres(this.genre);
+      console.log(this.propType)
     },
     // async getGameDetail() {
     //   console.log('wwwwwwwwwwwww')
@@ -79,20 +113,6 @@ $color_2: #cacaca;
 $color_3: #e9e9e9;
 $font-family_1: Arial, Helvetica, sans-serif;
 
-
-.item {
-  margin: 10px;
-  max-width: 100%;
-}
-
-#buttonNexts {
-  color: $color_1;
-}
-
-h3 {
-  margin-left: 3%;
-}
-
 #imagemPosterSlide {
   border-radius: 15px;
   transition: 0.5s;
@@ -106,14 +126,16 @@ h3 {
   }
 }
 
-.VueCarousel-navigation-button[data-v-453ad8cd] {
-  color: $color_3  !important;
-  outline: none !important;
+.item {
+  margin: 10px;
+  max-width: 100%;
 }
 
-.carousel {
-  width: 35%;
-  height: 100%;
-  margin: auto;
+#buttonNexts {
+  color: $color_1;
+}
+
+h3 {
+  margin-left: 3%;
 }
 </style>
