@@ -30,4 +30,4 @@ jobs:
     - run: npm run build --if-present
     - run: npm run test
     - run: npm install -g surge
-    - run: surge --project ./dist ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+    - run: surge ./dist --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
