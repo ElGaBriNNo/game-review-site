@@ -113,6 +113,18 @@ $color_2: #cacaca;
 $color_3: #e9e9e9;
 $font-family_1: Arial, Helvetica, sans-serif;
 
+#imagemPosterSlide {
+  border-radius: 15px;
+  transition: 0.5s;
+  height: 300px;
+  width: 250px;
+  object-fit: cover;
+
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}
 
 .item {
   margin: 10px;
@@ -125,18 +137,5 @@ $font-family_1: Arial, Helvetica, sans-serif;
 
 h3 {
   margin-left: 3%;
-}
-
-#imagemPosterSlide {
-  border-radius: 15px;
-  transition: 0.5s;
-  height: 300px;
-  width: 250px;
-  object-fit: cover;
-
-  &:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-  }
 }
 </style>

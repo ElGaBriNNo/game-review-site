@@ -33,6 +33,7 @@
     "mongoose": "^6.4.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.18",
+    "peeky": "^1.1.2",
     "pinia": "^2.0.13",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.6",
