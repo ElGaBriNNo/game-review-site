@@ -9,7 +9,7 @@ import LogInPage from "./LogInPage.vue";
     <SignUpPage v-bind:display="showSignUp" v-if="showSignUp" />
     <LogInPage v-bind:display="showLogIn" v-if="showLogIn" />
     <div class="startup">
-      <img alt="GM logo" class="logo" src="@/assets/gamitePNG.png" height="125" />
+      <img alt="GM logo" class="logo" :src="image" height="125" />
       <h1>Welcome to Gamite!</h1>
       <h3>
         Create your account or
@@ -26,9 +26,11 @@ import LogInPage from "./LogInPage.vue";
 </template>
 
 <script lang="ts">
+import image from "../assets/gamitepng.png";
 export default {
   data() {
     return {
+      image,
       showSignUp: false,
       showLogIn: false,
       name: "",
